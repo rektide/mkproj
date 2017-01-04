@@ -1,0 +1,19 @@
+#!/bin/sh
+[ -z "$1" ] && echo project name needed 2>&1 && exit 1
+dir=~/src/$1
+[ -d "$dir" ] || mkdir $dir
+cd $dir
+
+git init
+git checkout -b master
+
+touch "$1.js"
+
+git remote add origin https://archive.voodoowarez.com/"$1"
+git remote add github git@github.com:rektide/"$1"
+git config branch.master.remote github
+git config branch.master.merge refs/heads/master
+#git config branch.master.rebase true
+
+npm init -y
+

@@ -1,0 +1,19 @@
+{
+	"name": "mkproj",
+	"version": "1.0.0",
+	"description": "Create a project the rektide way.",
+	"main": "mkproj.js",
+	"bin": {
+		"mkproj": "./mkproj"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://archive.voodoowarez.com/mkproj"
+	},
+	"keywords": [],
+	"author": "rektide de la faye",
+	"license": "X11"
+}
