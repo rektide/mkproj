@@ -4,16 +4,18 @@ dir=~/src/$1
 [ -d "$dir" ] || mkdir $dir
 cd $dir
 
-git init
-git checkout -b master
+git init >&2
+git checkout -b master >&2
 
 touch "$1.js"
 
-git remote add origin https://archive.voodoowarez.com/"$1"
-git remote add github git@github.com:rektide/"$1"
+git remote add origin https://archive.voodoowarez.com/"$1" >&2
+git remote add github git@github.com:rektide/"$1" >&2
 git config branch.master.remote github
 git config branch.master.merge refs/heads/master
 #git config branch.master.rebase true
 
-npm init -y
-
+npm init -y >&2
+jq ". + {author: \"${AUTHOR-$(git config --get user.name)}\", license: \"${LICENSE-X11}\"}" package.json | unexpand -t 2 - > package.json.tmp
+mv package.json.tmp package.json
+cat package.json
