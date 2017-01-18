@@ -1,4 +1,4 @@
-# Mkproj
+# Rek On
 
 > Create a project the rektide way
 
