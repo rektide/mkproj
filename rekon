@@ -16,6 +16,23 @@ git config branch.master.merge refs/heads/master
 #git config branch.master.rebase true
 
 npm init -y >&2
-jq ". + {author: \"${AUTHOR-$(git config --get user.name)}\", license: \"${LICENSE-X11}\", module: \"$1.js\"}" package.json | unexpand -t 2 - > package.json.tmp
+
+# set the good stuff
+jq "$(cat <<EOF
+. + {
+	author: "${AUTHOR-$(git config --get user.name)}",
+	license: "${LICENSE-MIT}",
+	main: "index.js",
+	module: "$1.js",
+	esm: true,
+	"@std/esm": {
+		esm: "js",
+		cjs: {
+			namedExports: true
+		}
+	}
+}
+EOF
+)" package.json | unexpand -t 2 - > package.json.tmp
 mv package.json.tmp package.json
 cat package.json
