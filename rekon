@@ -26,7 +26,6 @@ jq "$(cat <<EOF
 	module: "$1.js",
 	esm: true,
 	"@std/esm": {
-		esm: "js",
 		cjs: {
 			namedExports: true
 		}
